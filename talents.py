@@ -12,28 +12,26 @@ def add_list_to_text(lst):
         
     text += 'copy=' + char_name + '-' + talentstring + '\n' + 'talents=' + talentstring + '\n\n'
 
-for a in range(0,talentrowlength):
-    for b in range(0,talentrowlength):
-        for c in range(0,talentrowlength):
-            for d in range(0,talentrowlength):
-                for e in range(0,talentrowlength):
-                    for f in range(0,talentrowlength):
-                        for g in range(0,talentrowlength):
-                            add_list_to_text(talents) # Print talents
-                            talents[0] += 1
-                        talents[0] = 1
-                        talents[1] += 1
-                    talents[1] = 1
-                    talents[2] += 1
-                talents[2] = 1
-                talents[3] += 1
-            talents[3] = 1
-            talents[4] += 1
-        talents[4] = 1
-        talents[5] += 1
-    talents[5] = 1
-    talents[6] += 1
-talents[6] = 1
+def calc(counter):
+    if(talents[counter] != 0):
+        if(counter == 0):
+            for _ in range(0,talentrowlength):
+                add_list_to_text(talents) # Print talents
+                talents[0] += 1
+            talents[0] = 1
+        else:
+            for _ in range(0,talentrowlength):
+                calc(counter-1)
+                talents[counter] += 1
+            talents[counter] = 1
+    else:
+        if(counter != 0):
+            calc(counter-1)
+        else:
+            add_list_to_text(talents) # Print talents
+        
+
+calc(len(talents)-1)
 
 text = text[:-2]
 
